@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notesapp_isar/components/drawer.dart';
+import 'package:notesapp_isar/components/text_tile.dart';
 import 'package:notesapp_isar/models/note.dart';
 import 'package:notesapp_isar/models/note_database.dart';
 import 'package:provider/provider.dart';
@@ -131,24 +132,7 @@ class _NotesPageState extends State<NotesPage> {
                 final note = currentNotes[index];
 
                 //list tile ui
-                return ListTile(
-                  title: Text(note.text),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      //edit button
-                      IconButton(
-                        onPressed: () => updateNote(note),
-                        icon: Icon(Icons.edit),
-                      ),
-                      //delete button
-                      IconButton(
-                        onPressed: () => deleteNote(note.id),
-                        icon: Icon(Icons.delete),
-                      ),
-                    ],
-                  ),
-                );
+                return TextTile(text: note.text);
               },
             ),
           ),
