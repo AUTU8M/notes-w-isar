@@ -31,6 +31,7 @@ class _NotesPageState extends State<NotesPage> {
       context: context,
       builder:
           (context) => AlertDialog(
+            backgroundColor: Theme.of(context).colorScheme.surface,
             content: TextField(controller: textController),
             actions: [
               //create button
@@ -63,6 +64,7 @@ class _NotesPageState extends State<NotesPage> {
       context: context,
       builder:
           (context) => AlertDialog(
+            backgroundColor: Theme.of(context).colorScheme.surface,
             title: Text("update note"),
             content: TextField(controller: textController),
             actions: [
@@ -107,7 +109,10 @@ class _NotesPageState extends State<NotesPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: createNote,
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.inversePrimary,
+        ),
       ),
       drawer: const MyDrawer(),
       body: Column(
@@ -132,7 +137,12 @@ class _NotesPageState extends State<NotesPage> {
                 final note = currentNotes[index];
 
                 //list tile ui
-                return TextTile(text: note.text);
+                return TextTile(
+                  text: note.text,
+                  onEditPressed: () => updateNote(note),
+
+                  onDeletePressed: () => deleteNote(note.id),
+                );
               },
             ),
           ),
